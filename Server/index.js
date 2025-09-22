@@ -9,9 +9,12 @@ app.use(express.json())
 mongoose.connect('mongodb://localhost:27017/test')
   
 app.get('/get', (req, res) => {
+     const id = req.params.id;
+
+  
     TodoModel.find()
     .then(result => res.json(result))
-    .catch (err => res.json(err))
+   .catch (err => res.json(err))
 }
 )
 
@@ -35,7 +38,7 @@ app.post('/add', (req, res) =>{
     const task = req.body.task;
     TodoModel.create ({
         task:task
-    }).then(result => res.json(result))
+    }).then(result => res.status(201).json(result))
     .catch (err => res.json(err))
 })
 
