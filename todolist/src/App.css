@@ -3,7 +3,7 @@
    justify-content: center;     /* horizontal centering */
   align-items: center;
   flex-direction: column;       /* stack children vertically */
-  width: 350%;
+ 
   box-sizing: border-box;
 }
 

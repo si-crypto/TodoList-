@@ -9,22 +9,11 @@ function Home() {
   
 const [todos, setTodos] = useState([])
 
-//useEffect(() => {
-  //axios.get('http://localhost:3001/get')
-  //.then(result => setTodos(result.data))
-  //.catch(err => console.log(err))
-//}, [])
-
- const fetchTodos = () => {
-    axios.get('http://localhost:3001/get')
-      .then(res => setTodos(res.data))
-      .catch(err => console.error(err));
-  };
-
- useEffect(() => {
-    fetchTodos();
-  }, []);
-
+useEffect(() => {
+  axios.get('http://localhost:3001/get')
+  .then(result => setTodos(result.data))
+  .catch(err => console.log(err))
+}, [])
  
 const handleEdit = (id) => {
  axios.put('http://localhost:3001/update/'+id)
@@ -37,18 +26,16 @@ const handleEdit = (id) => {
 
 const  handleDelete = (id) => {
  axios.delete('http://localhost:3001/delete/'+id)
-  .then(() => fetchTodos()) 
+  .then(result => {
+    location.reload()
+  })
   .catch(err => console.log(err)) 
 }
 
-const handleTaskAdded = (newTask) => {
-    setTodos(prev => [...prev, newTask]); // add to list instantly
-  };
   return (
     <div className='home'>
       <h2>Todo List</h2>
-        <Create onTaskAdded={fetchTodos} />
-  
+      <Create />
 {
   todos.length === 0 
   ?
