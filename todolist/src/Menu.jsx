@@ -5,7 +5,7 @@ import { BsCircleFill, BsFillCheckCircleFill, BsFillTrashFill } from 'react-icon
 
 import './App.css'
 
-function Home() {
+function Menu() {
   
 const [todos, setTodos] = useState([])
 
@@ -34,12 +34,36 @@ const  handleDelete = (id) => {
 
   return (
     <div className='home'>
-      <h2>Todo List</h2>
-      <Create />
-
+      <h2>Menu List</h2>
+     
+{
+  todos.length === 0 
+  ?
+  <div> <h2>No Record </h2></div>
+  :
+todos.map(todo => (
+  <div className='task'>
+    <div className='checkbox' onClick={ () => handleEdit (todo._id)}>
+      {todo.done?
+      <BsFillCheckCircleFill className='icon' ></BsFillCheckCircleFill>
+       :<BsCircleFill className='icon'/>
+   
+    }
+     
+   <p className= { todo.done ? "line_through" : ""}> Name {todo.task} <br>
+   </br> Price {todo.price}</p> 
+    </div>
+    <div>
+      <span><BsFillTrashFill className='icon' onClick={ () => handleDelete(todo._id)}/></span>
+    </div>
+    </div>
+))
+}
 
     </div>
   )
 }
 
-export default Home;
+export default Menu;
+
+
