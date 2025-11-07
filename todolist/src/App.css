@@ -14,12 +14,20 @@
 
 
  .create_form input{
+   display: block;
+    gap: 20px;
+    display: flex;
+     margin-bottom: 16px;
+  flex-direction: column;   
   width: 300px;
   padding: 10px;
   border-bottom: 2px solid;
   outline: none;
  }
 .create_form button {
+  justify-content: center;
+    align-items: center;
+     margin: 0 auto;
   padding: 10px;
   background-color: black;
   color: white;
